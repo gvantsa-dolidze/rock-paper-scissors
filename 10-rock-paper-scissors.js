@@ -6,15 +6,35 @@ let score = JSON.parse(localStorage.getItem("score")) || {
 
 updateScoreElement();
 
-/*
-if (!score) {
-  score = {
-    wins: 0,
-    losses: 0,
-    ties: 0
-  };
+let isAutoPlaying = false;
+let intervalId;
+
+//const autoPlay = () => {
+
+//};
+function autoPlay() {
+  if (!isAutoPlaying) {
+    intervalId = setInterval(() => {
+      const playerMove = pickComputerMove();
+      playGame(playerMove);
+    }, 1000);
+    isAutoPlaying = true;
+
+  } else {
+    clearInterval(intervalId);
+    isAutoPlaying = false;
+  }
 }
-*/
+
+document.body.addEventListener('keydown', (event) => {
+  if (event.key === 'r') {
+    playGame('rock');
+  } else if (event.key === 'p') {
+    playGame('paper');
+  } else if (event.key === 's') {
+    playGame('scissors');
+  }
+});
 
 function playGame(playerMove) {
   const computerMove = pickComputerMove();
@@ -85,3 +105,4 @@ function pickComputerMove() {
 
   return computerMove;
 }
+
