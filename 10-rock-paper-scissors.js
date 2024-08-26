@@ -39,6 +39,8 @@ document.body.addEventListener("keydown", (event) => {
     playGame("scissors");
   } else if (event.key === "a") {
     autoPlay();
+  } else if (event.key === "Backspace"){
+    resetScore()
   }
 });
 
@@ -121,3 +123,4 @@ const resetScore = () => {
 document.querySelector(".reset-score-button").addEventListener("click", () => {
   resetScore();
 });
+
