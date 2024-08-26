@@ -12,19 +12,21 @@ let intervalId;
 //const autoPlay = () => {
 
 //};
-document.querySelector('.auto-play-button').addEventListener('click', () => autoPlay())
+document
+  .querySelector(".auto-play-button")
+  .addEventListener("click", () => autoPlay());
 function autoPlay() {
   if (!isAutoPlaying) {
     intervalId = setInterval(() => {
       const playerMove = pickComputerMove();
-      document.querySelector('.auto-play-button').innerText = 'Stop Playing';
+      document.querySelector(".auto-play-button").innerText = "Stop Playing";
       playGame(playerMove);
     }, 1000);
     isAutoPlaying = true;
   } else {
     clearInterval(intervalId);
     isAutoPlaying = false;
-    document.querySelector('.auto-play-button').innerText = 'Auto play';
+    document.querySelector(".auto-play-button").innerText = "Auto play";
   }
 }
 
@@ -35,8 +37,8 @@ document.body.addEventListener("keydown", (event) => {
     playGame("paper");
   } else if (event.key === "s") {
     playGame("scissors");
-  } else if(event.key === "a") {
-    autoPlay()
+  } else if (event.key === "a") {
+    autoPlay();
   }
 });
 
@@ -109,3 +111,13 @@ function pickComputerMove() {
 
   return computerMove;
 }
+const resetScore = () => {
+  score.wins = 0;
+  score.losses = 0;
+  score.ties = 0;
+  localStorage.removeItem("score");
+  updateScoreElement();
+};
+document.querySelector(".reset-score-button").addEventListener("click", () => {
+  resetScore();
+});
