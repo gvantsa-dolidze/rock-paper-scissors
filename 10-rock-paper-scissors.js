@@ -12,6 +12,7 @@ let intervalId;
 //const autoPlay = () => {
 
 //};
+document.querySelector('.auto-play-button').addEventListener('click', () => autoPlay())
 function autoPlay() {
   if (!isAutoPlaying) {
     intervalId = setInterval(() => {
