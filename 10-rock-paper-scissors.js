@@ -39,8 +39,8 @@ document.body.addEventListener("keydown", (event) => {
     playGame("scissors");
   } else if (event.key === "a") {
     autoPlay();
-  } else if (event.key === "Backspace"){
-    resetScore()
+  } else if (event.key === "Backspace") {
+    resetScore();
   }
 });
 
@@ -120,7 +120,16 @@ const resetScore = () => {
   localStorage.removeItem("score");
   updateScoreElement();
 };
-document.querySelector(".reset-score-button").addEventListener("click", () => {
-  resetScore();
-});
 
+document.querySelector(".reset-score-button").addEventListener("click", () => {
+  document.querySelector(".js-yes-no").innerHTML = `
+        Are you sure you want to reset the score? <button class='yes-btn'>Yes</button> <button class="no-btn">No</button>
+    `;
+  document.querySelector(".yes-btn").addEventListener("click", () => {
+    resetScore();
+    document.querySelector(".js-yes-no").innerHTML = "";
+  });
+  document.querySelector(".no-btn").addEventListener("click", () => {
+    document.querySelector(".js-yes-no").innerHTML = "";
+  });
+});
