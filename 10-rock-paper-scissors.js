@@ -16,23 +16,24 @@ function autoPlay() {
   if (!isAutoPlaying) {
     intervalId = setInterval(() => {
       const playerMove = pickComputerMove();
+      document.querySelector('.auto-play-button').innerText = 'Stop Playing';
       playGame(playerMove);
     }, 1000);
     isAutoPlaying = true;
-
   } else {
     clearInterval(intervalId);
     isAutoPlaying = false;
+    document.querySelector('.auto-play-button').innerText = 'Auto play';
   }
 }
 
-document.body.addEventListener('keydown', (event) => {
-  if (event.key === 'r') {
-    playGame('rock');
-  } else if (event.key === 'p') {
-    playGame('paper');
-  } else if (event.key === 's') {
-    playGame('scissors');
+document.body.addEventListener("keydown", (event) => {
+  if (event.key === "r") {
+    playGame("rock");
+  } else if (event.key === "p") {
+    playGame("paper");
+  } else if (event.key === "s") {
+    playGame("scissors");
   }
 });
 
@@ -105,4 +106,3 @@ function pickComputerMove() {
 
   return computerMove;
 }
-
